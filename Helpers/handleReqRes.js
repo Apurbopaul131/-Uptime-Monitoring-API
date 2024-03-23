@@ -10,6 +10,7 @@ const url = require("url");
 const { StringDecoder } = require("string_decoder");
 const routes = require("../routes");
 const { notFoundHandler } = require("../handlers/routeHandlers/handleNotfound");
+const { jsonParse } = require("./utilities");
 
 //Module Scaffholding
 const reqResmodule = {};
@@ -30,7 +31,6 @@ reqResmodule.handleReqRes = (req, res) => {
     queryStringObj,
     headerObj,
   };
-
   const decoder = new StringDecoder("utf8");
   let realData = "";
 
@@ -39,13 +39,12 @@ reqResmodule.handleReqRes = (req, res) => {
     : notFoundHandler;
 
   req.on("data", (buffer) => {
-    realData += decoder.write(buffer);
+    realData += decoder.write(buffer); // Decode the Buffer chunk
   });
 
   req.on("end", () => {
     realData += decoder.end();
-    console.log(realData);
-
+    requestProperties.body = jsonParse(realData);
     choosenHandler(requestProperties, (statusCode, payload) => {
       let setStatusCode = statusCode;
       let setPayload = payload;

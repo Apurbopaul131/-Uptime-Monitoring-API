@@ -10,7 +10,7 @@ const handler = {};
 
 handler.smampleHandler = (requestProperties, callback) => {
   callback(200, {
-    message: "This is url",
+    message: "This is sample url",
   });
 };
 

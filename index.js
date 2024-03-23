@@ -10,9 +10,20 @@
 const http = require("http");
 const { handleReqRes } = require("./Helpers/handleReqRes");
 const processEnvironment = require("./Helpers/environments");
+// const data = require("./lib/filereadwrite");
 
 // App object - module Sacffholding
 const app = {};
+
+// //testing the file system
+// data.delete("test", "myFile", (err) => {
+//   console.log("Typeof:" + err);
+// });
+
+//testing read file system
+// readData.read("test", "myFile", (err4) => {
+//   console.log("error event is:" + err4);
+// });
 
 // app.config = {
 //   port: 3000,

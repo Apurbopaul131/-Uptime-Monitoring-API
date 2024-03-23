@@ -11,10 +11,12 @@ const environments = {};
 environments.staging = {
   port: 3000,
   envName: "staging",
+  secreteKey: "passkey",
 };
 environments.production = {
   port: 5000,
   envName: "production",
+  secreteKeyword: "passkeyword",
 };
 
 const currentEnvironment =
@@ -24,5 +26,6 @@ const exportedEnvironmentObj =
   typeof environments[currentEnvironment] === "object"
     ? environments[currentEnvironment]
     : environments.staging;
+
 // module export
 module.exports = exportedEnvironmentObj;
